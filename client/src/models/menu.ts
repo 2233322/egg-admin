@@ -30,7 +30,7 @@ export interface OperaDataItem {
 
 export interface MenuModelState {
   menuData?: MenuDataItem[];
-  operaList: OperaDataItem[];
+  operaList?: OperaDataItem[];
 }
 
 export interface MenuModelType {
@@ -63,7 +63,7 @@ const MenuModel: MenuModelType = {
     // 获取导航菜单数据
     *fetchMenuData(_, { call, put }) {
       const response = yield call(operaService.fetchMenuData, { page: 2 });
-      console.log(response)
+
       const menuDataRender = (menuList: MenuDataItem[]): MenuDataItem[] =>
         menuList.map((item: MenuDataItem): MenuDataItem => {
           // console.log(item)
@@ -72,10 +72,9 @@ const MenuModel: MenuModelType = {
             ...item,
             children: item.children ? menuDataRender(item.children) : [],
           };
-          console.log(Authorized.check(item.authority, localItem, null))
           return Authorized.check(item.authority, localItem, null) as MenuDataItem;
         });
-        console.log('dddddd', response.data.operaList)
+
       yield put({
         type: 'saveMenuData',
         payload: menuDataRender(response.data.operaList),
@@ -128,7 +127,7 @@ const MenuModel: MenuModelType = {
   },
 
   subscriptions: {
-    setup({ dispatch, history }):void {
+    setup({ dispatch, history }): void {
       history.listen(({ pathname, query }): void => {
         if (pathname === '/auth/opera') {
           dispatch({ type: 'fetchOpera', payload: query });

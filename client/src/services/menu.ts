@@ -43,6 +43,7 @@ export async function fetchOpera({ page = 1 }): Promise<Object> {
           uri
           isMenu
           url
+          iconfont
           describe
           status
           sort
@@ -56,6 +57,7 @@ export async function fetchOpera({ page = 1 }): Promise<Object> {
             uri
             isMenu
             url
+            iconfont
             describe
             status
             sort
@@ -69,6 +71,7 @@ export async function fetchOpera({ page = 1 }): Promise<Object> {
               uri
               isMenu
               url
+              iconfont
               describe
               status
               sort

@@ -12,7 +12,7 @@ export default class OperaConnector {
   }
 
   async fetch() {
-    const operaList = this.ctx.model.SysOpera.findAll({
+    const operaList = this.ctx.model.SysPermission.findAll({
       where: {
         status: true
       },
@@ -31,9 +31,9 @@ export default class OperaConnector {
     const { input: { id } } = args;
 
     if (typeof id === 'undefined') {
-      await this.ctx.model.SysOpera.create(args.input);
+      await this.ctx.model.SysPermission.create(args.input);
     } else {
-      await this.ctx.model.SysOpera.update(args.input, {
+      await this.ctx.model.SysPermission.update(args.input, {
         where: {
           id
         }
@@ -45,7 +45,7 @@ export default class OperaConnector {
   async delete(args: { id: number }) {
     const { id } = args;
     try {
-      const opera = await this.ctx.model.SysOpera.findByPk(id);
+      const opera = await this.ctx.model.SysPermission.findByPk(id);
       if (!opera) {
         return {
           code: 'failure_id_inexistence',
@@ -53,7 +53,7 @@ export default class OperaConnector {
         }
       }
 
-      const count = await this.ctx.model.SysOpera.count({
+      const count = await this.ctx.model.SysPermission.count({
         where: {
           parentId: opera.id
         }
@@ -66,7 +66,7 @@ export default class OperaConnector {
         }
       }
 
-      const result = await this.ctx.model.SysOpera.destroy({
+      const result = await this.ctx.model.SysPermission.destroy({
         where: {
           id
         }

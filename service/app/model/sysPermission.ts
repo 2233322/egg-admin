@@ -1,18 +1,34 @@
 import { Application } from 'egg';
 
-export default function (app: Application) {
-  const { INTEGER, STRING } = app.Sequelize;
+export default (app: Application) => {
+  const { INTEGER, STRING, BOOLEAN } = app.Sequelize;
   const Permission = app.model.define('sys_permission', {
     id: {
       type: INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    permissionType: {
-      type: STRING(20),
+    name: STRING(20),
+    parentId: {
+      type: INTEGER,
+      defaultValue: 0,
+    },
+    uri: {
+      type: STRING(50),
       unique: true,
     },
-    operaId: INTEGER,
+    isMenu: {
+      type: BOOLEAN,
+      defaultValue: false,
+    },
+    url: STRING(50),
+    iconfont: STRING(20),
+    describe: STRING(100),
+    sort: INTEGER,
+    status: {
+      type: BOOLEAN,
+      defaultValue: true,
+    },
   }, {
     tableName: 'sys_permission',
     modelName: 'Permission',
@@ -26,8 +42,6 @@ export default function (app: Application) {
 
       // 角色权限表多对多
       app.model.SysPermission.belongsToMany(app.model.SysRole, { through: 'sys_role_permission' });
-      // 权限菜单表一对一
-      app.model.SysPermission.belongsTo(app.model.SysOpera, { foreignKey: 'opera_id', targetKey: 'id' });
     }
   }
 }
