@@ -1,0 +1,14 @@
+type User {
+  id: ID!
+  name: String
+  email: String
+  status: Boolean
+  created_at: Date
+  updated_at: Date
+}
+
+input AddUserInput {
+  name: String!
+  email: String
+  password: String!
+}

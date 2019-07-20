@@ -1,0 +1,14 @@
+type Client {
+  id: ID
+  clientId: String
+  clientSecret: String
+  redirectUri: String
+  grants: String
+}
+
+input AddClientInput {
+  clientId: String
+  clientSecret: String
+  redirectUri: String
+  grants: String
+}

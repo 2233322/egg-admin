@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<title>oAuth2.0统一登录页</title>
+</head>
+<body>
+<div class="logo_box">
+	<h3>欢迎</h3>
+	<form action="/oauth2.0/authorize?{{query}}" method="post">
+		<div>
+			<input name="username" type="text" placeholder="请输入账户">
+		</div>
+		<div>
+			<input name="password" type="password" placeholder="请输入密码">
+		</div>
+		<div><button type="submit">submit</button></div>
+	</form>
+</div>
+</body>
+</html>

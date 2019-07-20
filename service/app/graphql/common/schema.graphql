@@ -1,0 +1,77 @@
+scalar Url
+scalar Date
+
+type Result {
+  #return code
+  code: String  
+  #return message
+  summary: String
+}
+
+# type Tweet {
+#     id: ID!
+#     # The tweet text. No more than 140 characters!
+#     body: String
+#     # When the tweet was published
+#     date: Date
+#     # Who published the tweet
+#     Author(status: Boolean): User
+#     # Views, retweets, likes, etc
+#     Stats: Stat
+# }
+
+# type User {
+#     id: ID!
+#     username: String
+#     first_name: String
+#     last_name: String
+#     full_name: String
+#     name: String @deprecated
+#     avatar_url: Url
+# }
+
+# type Stat {
+#     views: Int
+#     likes: Int
+#     retweets: Int
+#     responses: Int
+# }
+
+# type Meta {
+#     count: Int
+# }
+
+type Query {
+  #测试
+  # tweet(id: ID!): Tweet
+  # tweets(limit: Int, sortField: String, sortOrder: String): [Tweet]
+  # TweetsMeta: Meta
+  # User: User
+
+  #获取客户端
+  client: Client
+
+  #获取用户列表
+  userList: [User]
+
+  #获取用户
+  user(id: Int, name: String, email: String): User
+
+  #获取功能模块列表
+  operaList: [Opera]
+}
+
+type Mutation {
+
+  #adds a client
+  addClient(input: AddClientInput): Client
+
+  #Adds a user
+  addUser(input: AddUserInput): User
+
+  #新增功能模块
+  mutationOpera(input: MutationOperaInput): Opera
+
+  #删除功能模块
+  deleteOpera(id: Int!): Result
+}

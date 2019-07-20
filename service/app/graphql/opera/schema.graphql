@@ -1,0 +1,26 @@
+type Opera {
+  id: Int
+  name: String
+  parentId: Int
+  uri: String
+  isMenu: Boolean
+  url: String
+  iconfont: String
+  describe: String
+  status: Boolean
+  sort: Int
+  children: [Opera]
+}
+
+input MutationOperaInput {
+  id: Int
+  name: String!
+  parentId: Int
+  uri: String!
+  isMenu: Boolean
+  url: String
+  iconfont: String
+  describe: String
+  status: Boolean
+  sort: Int
+}
